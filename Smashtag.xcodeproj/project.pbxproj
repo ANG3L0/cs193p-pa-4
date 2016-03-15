@@ -19,6 +19,7 @@
 		2FDB14A61C95EFB600906E38 /* TwitterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDB14A21C95EFB600906E38 /* TwitterRequest.swift */; };
 		2FDB14A71C95EFB600906E38 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDB14A31C95EFB600906E38 /* User.swift */; };
 		2FDB14A91C96020600906E38 /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDB14A81C96020600906E38 /* TweetTableViewCell.swift */; };
+		2FDB14ED1C97C0F300906E38 /* Programming_ Project 4.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2FDB14EC1C97C0F300906E38 /* Programming_ Project 4.pdf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		2FDB14A21C95EFB600906E38 /* TwitterRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterRequest.swift; sourceTree = "<group>"; };
 		2FDB14A31C95EFB600906E38 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2FDB14A81C96020600906E38 /* TweetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTableViewCell.swift; sourceTree = "<group>"; };
+		2FDB14EC1C97C0F300906E38 /* Programming_ Project 4.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Programming_ Project 4.pdf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 		2FDB14631C95EE6B00906E38 = {
 			isa = PBXGroup;
 			children = (
+				2FDB14EC1C97C0F300906E38 /* Programming_ Project 4.pdf */,
 				2FDB146E1C95EE6B00906E38 /* Smashtag */,
 				2FDB14831C95EE6B00906E38 /* SmashtagTests */,
 				2FDB148E1C95EE6B00906E38 /* SmashtagUITests */,
@@ -255,6 +258,7 @@
 				2FDB147A1C95EE6B00906E38 /* LaunchScreen.storyboard in Resources */,
 				2FDB14771C95EE6B00906E38 /* Assets.xcassets in Resources */,
 				2FDB14751C95EE6B00906E38 /* Main.storyboard in Resources */,
+				2FDB14ED1C97C0F300906E38 /* Programming_ Project 4.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,6 +516,7 @@
 				2FDB14961C95EE6B00906E38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2FDB14971C95EE6B00906E38 /* Build configuration list for PBXNativeTarget "SmashtagTests" */ = {
 			isa = XCConfigurationList;
@@ -520,6 +525,7 @@
 				2FDB14991C95EE6B00906E38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2FDB149A1C95EE6B00906E38 /* Build configuration list for PBXNativeTarget "SmashtagUITests" */ = {
 			isa = XCConfigurationList;
@@ -528,6 +534,7 @@
 				2FDB149C1C95EE6B00906E38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
