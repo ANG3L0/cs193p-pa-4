@@ -79,6 +79,7 @@
                                     <outlet property="tweetProfileImageView" destination="dlh-AG-mh2" id="SCo-nF-9fC"/>
                                     <outlet property="tweetScreenNameLabel" destination="uoL-Xf-fMj" id="gNP-c8-1xR"/>
                                     <outlet property="tweetTextLabel" destination="0dY-Rf-psa" id="9YF-Kk-oy5"/>
+                                    <segue destination="715-7f-Tc6" kind="show" identifier="showdetails" id="HCB-Za-RyY"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -106,18 +107,57 @@
         <scene sceneID="2Xe-lF-Gea">
             <objects>
                 <tableViewController id="715-7f-Tc6" customClass="KeywordsTableViewController" customModule="Smashtag" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="pPO-c1-rNf">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="pPO-c1-rNf">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Qkx-g8-F7z">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Keywords" id="Qkx-g8-F7z" customClass="KeywordsTableViewCell" customModule="Smashtag" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qkx-g8-F7z" id="T7q-oa-yXO">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MOp-Jj-917">
+                                            <rect key="frame" x="8" y="8" width="584" height="28"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="MOp-Jj-917" firstAttribute="top" secondItem="T7q-oa-yXO" secondAttribute="topMargin" id="1wW-SE-x53"/>
+                                        <constraint firstItem="MOp-Jj-917" firstAttribute="trailing" secondItem="T7q-oa-yXO" secondAttribute="trailingMargin" id="27Q-7l-Ncd"/>
+                                        <constraint firstItem="MOp-Jj-917" firstAttribute="centerY" secondItem="T7q-oa-yXO" secondAttribute="centerY" id="IDC-VK-TdM"/>
+                                        <constraint firstItem="MOp-Jj-917" firstAttribute="leading" secondItem="T7q-oa-yXO" secondAttribute="leadingMargin" id="a0Y-oh-Iy1"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="keywordLabel" destination="MOp-Jj-917" id="nz3-78-grb"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Images" rowHeight="260" id="phu-nb-36E" customClass="ImagesTableViewCell" customModule="Smashtag" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="158" width="600" height="260"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="phu-nb-36E" id="ZCm-Tp-cvL">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="260"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3SL-OX-dcF">
+                                            <rect key="frame" x="8" y="8" width="584" height="244"/>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="3SL-OX-dcF" firstAttribute="leading" secondItem="ZCm-Tp-cvL" secondAttribute="leadingMargin" id="86l-ha-FiU"/>
+                                        <constraint firstItem="3SL-OX-dcF" firstAttribute="top" secondItem="ZCm-Tp-cvL" secondAttribute="topMargin" id="GIF-lB-gAl"/>
+                                        <constraint firstItem="3SL-OX-dcF" firstAttribute="trailing" secondItem="ZCm-Tp-cvL" secondAttribute="trailingMargin" id="Xg2-vp-KKu"/>
+                                        <constraint firstItem="3SL-OX-dcF" firstAttribute="centerY" secondItem="ZCm-Tp-cvL" secondAttribute="centerY" id="ZPH-FK-yN1"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="pic" destination="3SL-OX-dcF" id="fik-dW-8l2"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

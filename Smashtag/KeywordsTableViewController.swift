@@ -9,43 +9,115 @@
 import UIKit
 
 class KeywordsTableViewController: UITableViewController {
+    
+    var urls: [Tweet.IndexedKeyword] = []
+    var userMentions: [Tweet.IndexedKeyword] = []
+    var hashtags: [Tweet.IndexedKeyword] = []
+    var images: [MediaItem] = []
+    
+    //why dictionary? Allows for arbitrary assignment of sectioning
+    private var mediaSharing: [Medium] = []
 
+    
+    // MARK: - Private structural declarations
+    private enum TweetElement {
+        case Image(NSURL, Double)
+        case StringElement(String, UIColor)
+    }
+    
+    private struct Medium {
+        var count: Int
+        var header: String?
+        var data: [TweetElement]
+    }
+    
+    private struct Constants {
+        static let ImageTitle = "IMAGES"
+        static let UrlTitle = "LINKS"
+        static let HtTitle = "HASHTAGS"
+        static let MentionTitle = "MENTIONS"
+    }
+
+    
+    // MARK: - Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        let urlCount = urls.count
+        let hashtagCount = hashtags.count
+        let userMentionCount = userMentions.count
+        let imagesCount = images.count
+        if imagesCount > 0 { mediaSharing.append(Medium(count: imagesCount, header: imagesCount > 0 ? Constants.ImageTitle : nil, data: imageData(images))) }
+        if urlCount > 0 { mediaSharing.append(Medium(count: urlCount, header: urlCount > 0 ? Constants.UrlTitle  : nil, data: stringData(urls, color: TweetTableViewCell.Color.urlColor))) }
+        if hashtagCount > 0 { mediaSharing.append(Medium(count: hashtagCount, header: hashtagCount > 0 ? Constants.HtTitle : nil, data: stringData(hashtags, color: TweetTableViewCell.Color.htColor))) }
+        if userMentionCount > 0 { mediaSharing.append(Medium(count: userMentionCount, header: userMentionCount > 0 ? Constants.MentionTitle : nil, data: stringData(userMentions, color: TweetTableViewCell.Color.screennameColor))) }
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    
     // MARK: - Table view data source
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return mediaSharing[section].count
     }
 
-    /*
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return mediaSharing[section].header
+    }
+    
+    private struct Storyboard {
+        static let KeywordsReuseIdentifier = "Keywords"
+        static let ImagesReuseIdentifier = "Images"
+    }
+
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
+        let medium = mediaSharing[indexPath.section].data[indexPath.row]
+        switch medium {
+        case .StringElement(let string, let color):
+            let cell = tableView.dequeueReusableCellWithIdentifier(Storyboard.KeywordsReuseIdentifier, forIndexPath: indexPath) as! KeywordsTableViewCell
+            cell.keywordLabel.text = string
+            let attrStr =  NSMutableAttributedString(string: string)
+            let range = NSMakeRange(0, string.characters.count)
+            attrStr.addAttribute(NSForegroundColorAttributeName, value: color, range: range)
+            cell.keywordLabel.attributedText = attrStr
+            return cell
+        case .Image(let url, _):
+            let cell = tableView.dequeueReusableCellWithIdentifier(Storyboard.ImagesReuseIdentifier, forIndexPath: indexPath) as! ImagesTableViewCell
+            cell.url = url
+            return cell
+        }
     }
-    */
+    
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return mediaSharing.count
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        let medium = mediaSharing[indexPath.section].data[indexPath.row]
+        switch medium {
+        case .StringElement(_, _):
+            return UITableViewAutomaticDimension
+        case .Image(_, let aspectRatio):
+            return tableView.bounds.size.width / CGFloat(aspectRatio)
+        }
+    }
+    
+    // MARK: - private utility functions
+    private func stringData(data: [Tweet.IndexedKeyword], color: UIColor) -> [TweetElement] {
+        var tweetElement: [TweetElement] = []
+        for datum in data {
+            tweetElement.append(TweetElement.StringElement(datum.keyword, color))
+        }
+        return tweetElement
+    }
+    private func imageData(data: [MediaItem]) -> [TweetElement] {
+        var tweetImage: [TweetElement] = []
+        for datum in data {
+            tweetImage.append(TweetElement.Image(datum.url, datum.aspectRatio))
+        }
+        return tweetImage
+    }
+    
+
 
     /*
     // Override to support conditional editing of the table view.

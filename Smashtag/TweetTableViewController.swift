@@ -20,6 +20,41 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
             refresh()
         }
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let tweetDetailsTvc = segue.destinationViewController as? KeywordsTableViewController {
+            if let identifier = segue.identifier {
+                switch identifier {
+                case "showdetails":
+                    let cell = sender as? TweetTableViewCell
+                    tweetDetailsTvc.images = cell?.tweet?.media ?? []
+                    tweetDetailsTvc.urls = cell?.tweet?.urls ?? []
+                    tweetDetailsTvc.hashtags = cell?.tweet?.hashtags ?? []
+                    tweetDetailsTvc.userMentions = cell?.tweet?.userMentions ?? []
+                default: break
+                }
+            }
+        }
+        
+    }
+    //    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    //        //NOTE: this code will work for happiness MVC regardless of whether or not it is embedded in a Nav Controller
+    //        var destination = segue.destinationViewController as? UIViewController
+    //        if let navCon = destination as? UINavigationController {
+    //            destination = navCon.visibleViewController
+    //        }
+    //        if let hvc = destination as? HappinessViewController {
+    //            //faceView outlet would not be set
+    //            if let identifier = segue.identifier {
+    //                switch identifier {
+    //                case "sad": hvc.happiness = 0
+    //                case "happy": hvc.happiness = 100
+    //                case "nothing": hvc.happiness = 25
+    //                default: hvc.happiness = 50
+    //                }
+    //            }
+    //        }
+    //    }
 
     // MARK: - View Controller Lifecycle
     override func viewDidLoad() {
@@ -49,7 +84,6 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     func refresh() {
-        print("refresh called")
         if refreshControl != nil {
             refreshControl?.beginRefreshing()
         }
@@ -60,7 +94,6 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         if searchText != nil {
             if let request = nextRequestToAttempt {
                 //fetchtweets is async API therefore must re-dispatch main queue upon return
-                print("requesting")
                 request.fetchTweets{ (newTweets) -> Void in
                     dispatch_async(dispatch_get_main_queue()) { () -> Void in
                         if newTweets.count > 0 {
@@ -93,12 +126,11 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     // MARK: - UITableViewDataSource
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return tweets.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        print ("ret tableView \(tweets[section].count)")
         return tweets[section].count
     }
 

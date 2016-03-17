@@ -6,9 +6,9 @@ TBD
 
 ## Required Tasks
 1. [x] Enhance Smashtag from lecture to highlight (in a different color for each) hashtags, urls and user screen names mentioned in the text of a Tweet (these are known as “mentions”). Note that mentions are already located for you in each Tweet by Twitter and show up as [IndexedKeyword]s in the Tweet class in the supplied Twitter code.
-2. [ ] When a user clicks on a Tweet, segue to a new UITableViewController which has four sections showing the “mentions” in the Tweet: Images, URLs, Hashtags and Users. The first section displays (one per row) any images attached to the Tweet (found in the media variable in the Tweet class). The last three show the items described in Required Task 1 (again, one per row).
-3. [ ] Each section in the mentions table view should have an appropriate header.
-4. [ ] If a section has no items in it, there should be no header visible for that section.
+2. [x] When a user clicks on a Tweet, segue to a new UITableViewController which has four sections showing the “mentions” in the Tweet: Images, URLs, Hashtags and Users. The first section displays (one per row) any images attached to the Tweet (found in the media variable in the Tweet class). The last three show the items described in Required Task 1 (again, one per row).
+3. [x] Each section in the mentions table view should have an appropriate header.
+4. [x] If a section has no items in it, there should be no header visible for that section.
 5. [ ] If a user touches an entry for a hashtag or a user in the “mentions table view” that you created in Required Task 2 above, you should segue to show the results of searching Twitter for that hashtag or user. It should be searching for hashtags or users, not just searching for a string that is the name of the hashtag or user (e.g. search for “#stanford”, not “stanford”). The view controller to which you segue must work identically to your main Tweet-viewing view controller (TweetTableViewController).
 6. [ ] If the user clicks on a mentioned url in your newly created view controller, you should open up that url in Safari (see Hints below for how to do that).
 7. [ ] If the user clicks on an image in your newly created view controller, segue to a new MVC which lets the user scroll around and zoom in on the image. When the image first appears in the MVC, it should display zoomed (in its normal aspect ratio) to show as much of the image as possible but with no “whitespace” around it.

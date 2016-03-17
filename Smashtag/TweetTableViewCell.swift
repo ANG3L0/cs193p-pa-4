@@ -16,10 +16,10 @@ class TweetTableViewCell: UITableViewCell {
         }
     }
     
-    private struct Color {
-        static let red = UIColor.redColor()
-        static let brown = UIColor.brownColor()
-        static let blue = UIColor.blueColor()
+    struct Color {
+        static let screennameColor = UIColor.redColor()
+        static let htColor = UIColor.brownColor()
+        static let urlColor = UIColor.blueColor()
     }
     
     @IBOutlet weak var tweetProfileImageView: UIImageView!
@@ -29,6 +29,8 @@ class TweetTableViewCell: UITableViewCell {
     @IBOutlet weak var tweetCreatedLabel: UILabel!
     
     let qos = Int(QOS_CLASS_USER_INITIATED.rawValue)
+
+    
     
     func updateUI() {
         // reset any existing tweet information
@@ -47,7 +49,7 @@ class TweetTableViewCell: UITableViewCell {
                 for _ in tweet.media {
                     tweetTextLabel.text! += " 📷"
                 }
-                highlightIndicators(tweetTextLabel, hashtagColor: Color.brown, screennameColor: Color.red, urlColor:  Color.blue)
+                highlightIndicators(tweetTextLabel, hashtagColor: Color.htColor, screennameColor: Color.screennameColor, urlColor:  Color.urlColor)
             }
             
             
