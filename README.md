@@ -1,8 +1,7 @@
 # Project 4 - Smashtag Mentions
-TBD
 
 ## Summary
-TBD
+Here, we do a bunch of stuff using Tweet data.  Mainly to learn about how to go around a bunch of different MVCs with a tab controller and segue'ing up the wazoo.  Also, utilizing TableView.
 
 ## Required Tasks
 1. [x] Enhance Smashtag from lecture to highlight (in a different color for each) hashtags, urls and user screen names mentioned in the text of a Tweet (these are known as “mentions”). Note that mentions are already located for you in each Tweet by Twitter and show up as [IndexedKeyword]s in the Tweet class in the supplied Twitter code.
@@ -14,7 +13,7 @@ TBD
 7. [x] If the user clicks on an image in your newly created view controller, segue to a new MVC which lets the user scroll around and zoom in on the image. When the image first appears in the MVC, it should display zoomed (in its normal aspect ratio) to show as much of the image as possible but with no “whitespace” around it.
 8. [x] Keep track of the most recent 100 Twitter searches the user has performed in your application. Add a UITabBarController to your application with a tab for searching (i.e. your main UI) and a second tab showing these most recent search terms in a table view (uniqued with most recent first). When a user clicks on a search term in the second tab, segue (stay in that same tab) to show the most recent Tweets matching that search term. Store these most recent searches permanently in NSUserDefaults so that your application doesn’t forget them if it is restarted.
 9. [x] You must not block the main thread of your application with a network request at any time.
-- [x] Your application must work properly in portrait or landscape on any iPhone (this is an iPhone-only application). 
+10. [x] Your application must work properly in portrait or landscape on any iPhone (this is an iPhone-only application). 
 
 ## Extra Credit
 1. [ ] In the Users section of your new UITableViewController, list not only users mentioned in the Tweet, but also the user who posted the Tweet in the first place.
