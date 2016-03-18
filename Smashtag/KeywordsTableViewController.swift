@@ -37,11 +37,35 @@ class KeywordsTableViewController: UITableViewController {
         static let HtTitle = "HASHTAGS"
         static let MentionTitle = "MENTIONS"
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "Goback To Tweets" {
+            if let cell = sender as? KeywordsTableViewCell {
+                if let tweetMVC = segue.destinationViewController as? TweetTableViewController {
+                    if let text = cell.keywordLabel.text {
+                        if text.hasPrefix("@") || text.hasPrefix("#") {
+                            tweetMVC.searchText = cell.keywordLabel.text
+                        } else {
+                            let url = NSURL(string: text)
+                            UIApplication.sharedApplication().openURL(url!) //would not be marked URL without http://
+                        }
+                    }
+                    
+                }
+            }
+        } else if let cell = sender as? ImagesTableViewCell {
+            let imageMVC = segue.destinationViewController as! ImageViewController
+            imageMVC.imageAspectRatio = cell.pic.bounds.width / cell.pic.bounds.height
+            imageMVC.image = cell.pic.image
+            print(imageMVC.imageAspectRatio)
+        }
+    }
 
     
     // MARK: - Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Tweet Deetz"
         let urlCount = urls.count
         let hashtagCount = hashtags.count
         let userMentionCount = userMentions.count

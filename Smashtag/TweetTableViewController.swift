@@ -10,6 +10,8 @@ import UIKit
 
 class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     
+    private let defaults = NSUserDefaults.standardUserDefaults()
+    
     var tweets = [[Tweet]]()
     var searchText: String? = "#stanford" {
         didSet {
@@ -17,11 +19,34 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
             searchTextField?.text = searchText
             tweets.removeAll()
             tableView.reloadData()
+            pushUniqueSearchHistory()
+
             refresh()
         }
     }
     
+    private func pushUniqueSearchHistory() {
+        var newHistory: [String] = []
+        if let oldHistory = defaults.objectForKey(SearchHistoryTableViewController.Keys.History) as? [String] {
+            newHistory = oldHistory
+            if !oldHistory.contains(searchText!) {
+                if oldHistory.count < 100 {
+                    newHistory.append(searchText!)
+                } else {
+                    newHistory.append(searchText!)
+                    newHistory.removeFirst()
+                }
+            }
+        }
+        
+        defaults.setObject(newHistory, forKey: SearchHistoryTableViewController.Keys.History)
+    }
+    
+    @IBAction func goBack(segue: UIStoryboardSegue) {
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        print("asdf")
         if let tweetDetailsTvc = segue.destinationViewController as? KeywordsTableViewController {
             if let identifier = segue.identifier {
                 switch identifier {
@@ -37,24 +62,6 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         }
         
     }
-    //    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    //        //NOTE: this code will work for happiness MVC regardless of whether or not it is embedded in a Nav Controller
-    //        var destination = segue.destinationViewController as? UIViewController
-    //        if let navCon = destination as? UINavigationController {
-    //            destination = navCon.visibleViewController
-    //        }
-    //        if let hvc = destination as? HappinessViewController {
-    //            //faceView outlet would not be set
-    //            if let identifier = segue.identifier {
-    //                switch identifier {
-    //                case "sad": hvc.happiness = 0
-    //                case "happy": hvc.happiness = 100
-    //                case "nothing": hvc.happiness = 25
-    //                default: hvc.happiness = 50
-    //                }
-    //            }
-    //        }
-    //    }
 
     // MARK: - View Controller Lifecycle
     override func viewDidLoad() {

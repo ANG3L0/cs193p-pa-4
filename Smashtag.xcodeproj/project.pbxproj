@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F03B2C31C9B87EB00C342B9 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F03B2C21C9B87EB00C342B9 /* ImageViewController.swift */; };
+		2F03B2C51C9BA53200C342B9 /* SearchHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F03B2C41C9BA53200C342B9 /* SearchHistoryTableViewController.swift */; };
+		2F2D17421C9BB4D800C5D6AB /* SearchHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2D17411C9BB4D800C5D6AB /* SearchHistoryTableViewCell.swift */; };
 		2F46E17A1C9889EA006A1DB0 /* KeywordsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F46E1791C9889EA006A1DB0 /* KeywordsTableViewController.swift */; };
 		2FB7E5641C99AF49009E2111 /* KeywordsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB7E5631C99AF49009E2111 /* KeywordsTableViewCell.swift */; };
 		2FB7E5661C9A4527009E2111 /* ImagesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB7E5651C9A4527009E2111 /* ImagesTableViewCell.swift */; };
@@ -43,6 +46,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2F03B2C21C9B87EB00C342B9 /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		2F03B2C41C9BA53200C342B9 /* SearchHistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHistoryTableViewController.swift; sourceTree = "<group>"; };
+		2F2D17411C9BB4D800C5D6AB /* SearchHistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		2F46E1791C9889EA006A1DB0 /* KeywordsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeywordsTableViewController.swift; sourceTree = "<group>"; };
 		2FB7E5631C99AF49009E2111 /* KeywordsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeywordsTableViewCell.swift; sourceTree = "<group>"; };
 		2FB7E5651C9A4527009E2111 /* ImagesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesTableViewCell.swift; sourceTree = "<group>"; };
@@ -120,8 +126,11 @@
 				2FDB14731C95EE6B00906E38 /* Main.storyboard */,
 				2FDB14A81C96020600906E38 /* TweetTableViewCell.swift */,
 				2FDB149D1C95EEDD00906E38 /* TweetTableViewController.swift */,
-				2FB7E5631C99AF49009E2111 /* KeywordsTableViewCell.swift */,
+				2F03B2C41C9BA53200C342B9 /* SearchHistoryTableViewController.swift */,
+				2F2D17411C9BB4D800C5D6AB /* SearchHistoryTableViewCell.swift */,
 				2F46E1791C9889EA006A1DB0 /* KeywordsTableViewController.swift */,
+				2FB7E5631C99AF49009E2111 /* KeywordsTableViewCell.swift */,
+				2F03B2C21C9B87EB00C342B9 /* ImageViewController.swift */,
 				2FB7E5651C9A4527009E2111 /* ImagesTableViewCell.swift */,
 				2FDB14761C95EE6B00906E38 /* Assets.xcassets */,
 				2FDB149F1C95EFB600906E38 /* Twitter */,
@@ -292,6 +301,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F03B2C51C9BA53200C342B9 /* SearchHistoryTableViewController.swift in Sources */,
 				2FDB149E1C95EEDD00906E38 /* TweetTableViewController.swift in Sources */,
 				2F46E17A1C9889EA006A1DB0 /* KeywordsTableViewController.swift in Sources */,
 				2FDB14A61C95EFB600906E38 /* TwitterRequest.swift in Sources */,
@@ -300,7 +310,9 @@
 				2FDB14A41C95EFB600906E38 /* MediaItem.swift in Sources */,
 				2FB7E5641C99AF49009E2111 /* KeywordsTableViewCell.swift in Sources */,
 				2FDB14A51C95EFB600906E38 /* Tweet.swift in Sources */,
+				2F2D17421C9BB4D800C5D6AB /* SearchHistoryTableViewCell.swift in Sources */,
 				2FDB14A91C96020600906E38 /* TweetTableViewCell.swift in Sources */,
+				2F03B2C31C9B87EB00C342B9 /* ImageViewController.swift in Sources */,
 				2FB7E5661C9A4527009E2111 /* ImagesTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
