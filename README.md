@@ -14,15 +14,18 @@ TBD
 7. [x] If the user clicks on an image in your newly created view controller, segue to a new MVC which lets the user scroll around and zoom in on the image. When the image first appears in the MVC, it should display zoomed (in its normal aspect ratio) to show as much of the image as possible but with no “whitespace” around it.
 8. [x] Keep track of the most recent 100 Twitter searches the user has performed in your application. Add a UITabBarController to your application with a tab for searching (i.e. your main UI) and a second tab showing these most recent search terms in a table view (uniqued with most recent first). When a user clicks on a search term in the second tab, segue (stay in that same tab) to show the most recent Tweets matching that search term. Store these most recent searches permanently in NSUserDefaults so that your application doesn’t forget them if it is restarted.
 9. [x] You must not block the main thread of your application with a network request at any time.
-10. [x] Your application must work properly in portrait or landscape on any iPhone (this is an iPhone-only application). 
+- [x] Your application must work properly in portrait or landscape on any iPhone (this is an iPhone-only application). 
 
 ## Extra Credit
-1. In the Users section of your new UITableViewController, list not only users mentioned in the Tweet, but also the user who posted the Tweet in the first place.
-2. When you click on a user in the Users section, search not only for Tweets that mention that user, but also for Tweets which were posted by that user.
-3. If you segue using Show (rather than Unwind), add some UI which will Unwind all the way back to the rootViewController of the UINavigationController. Even if you use Unwind (rather than Show), then if do the Collection View extra credit below using a Show segue, you might want the “unwind to root” behavior in scenes you segue to via the Collection View.
-4. Instead of opening urls in Safari, display them in your application by segueing to a controller with a UIWebView. You’ll have to provide at least a little bit of “browser control” UI to go along with it (e.g. a “back button”).
-5. Make the “most recent searches” table be editable (i.e. let the user swipe left to delete the ones they don’t like).
-6. Add some UI which displays a new view controller showing a UICollectionView of the first image (or all the images if you want) in all the Tweets that match the search. When a user clicks on an image in this UICollectionView, segue to showing them the Tweet.
+1. [ ] In the Users section of your new UITableViewController, list not only users mentioned in the Tweet, but also the user who posted the Tweet in the first place.
+2. [ ] When you click on a user in the Users section, search not only for Tweets that mention that user, but also for Tweets which were posted by that user.
+3. [ ] If you segue using Show (rather than Unwind), add some UI which will Unwind all the way back to the rootViewController of the UINavigationController. Even if you use Unwind (rather than Show), then if do the Collection View extra credit below using a Show segue, you might want the “unwind to root” behavior in scenes you segue to via the Collection View.
+Did unwind since Show would be a pretty unreasonable UI.  Not doing Collection View.  
+4. [ ] Instead of opening urls in Safari, display them in your application by segueing to a controller with a UIWebView. You’ll have to provide at least a little bit of “browser control” UI to go along with it (e.g. a “back button”).
+No thanks.  Bad practice to reinvent the wheel when you can delegate browsing to an app.  
+5. [ ] Make the “most recent searches” table be editable (i.e. let the user swipe left to delete the ones they don’t like).
+6. [ ] Add some UI which displays a new view controller showing a UICollectionView of the first image (or all the images if you want) in all the Tweets that match the search. When a user clicks on an image in this UICollectionView, segue to showing them the Tweet.
+If I do this, why wouldn't I embed the photo in the original view in the first place?
 
 ## Demo
 TBD
