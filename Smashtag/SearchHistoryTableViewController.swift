@@ -25,7 +25,7 @@ class SearchHistoryTableViewController: UITableViewController {
 //            print("this needs to be here for append not to crash")
         }
         didSet {
-            tableView.reloadData()
+//            tableView.reloadData()
         }
     }
     
@@ -38,6 +38,7 @@ class SearchHistoryTableViewController: UITableViewController {
             searchHistory = history
         }
         searchHistory = searchHistory.reverse()
+        tableView.reloadData()
         print(searchHistory)
 
     }
@@ -60,8 +61,6 @@ class SearchHistoryTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-//        print(searchHistory.count)
         return searchHistory.count
     }
 
@@ -81,11 +80,12 @@ class SearchHistoryTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            tableView.beginUpdates()
+            searchHistory.removeAtIndex(searchHistory.startIndex.advancedBy(indexPath.row))
+            defaults.setObject(searchHistory, forKey: SearchHistoryTableViewController.Keys.History)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            tableView.endUpdates()
+        }
     }
 
     /*
