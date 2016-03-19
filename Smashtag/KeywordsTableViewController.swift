@@ -10,6 +10,7 @@ import UIKit
 
 class KeywordsTableViewController: UITableViewController {
     
+    var poster: User = User()
     var urls: [Tweet.IndexedKeyword] = []
     var userMentions: [Tweet.IndexedKeyword] = []
     var hashtags: [Tweet.IndexedKeyword] = []
@@ -43,9 +44,13 @@ class KeywordsTableViewController: UITableViewController {
             if let cell = sender as? KeywordsTableViewCell {
                 if let tweetMVC = segue.destinationViewController as? TweetTableViewController {
                     if let text = cell.keywordLabel.text {
-                        if text.hasPrefix("@") || text.hasPrefix("#") {
+                        if text.hasPrefix("@") {
+                            let indexOne = cell.keywordLabel.text?.startIndex.advancedBy(1)
+                            let nameNoAt = cell.keywordLabel.text?.substringFromIndex(indexOne!)
+                            tweetMVC.searchText = "\((cell.keywordLabel.text)!) OR from:\(nameNoAt!)"
+                        } else if text.hasPrefix("#") {
                             tweetMVC.searchText = cell.keywordLabel.text
-                        } else {
+                        } else if text.hasPrefix("http") {
                             let url = NSURL(string: text)
                             UIApplication.sharedApplication().openURL(url!) //would not be marked URL without http://
                         }
@@ -68,20 +73,23 @@ class KeywordsTableViewController: UITableViewController {
         title = "Tweet Deetz"
         let urlCount = urls.count
         let hashtagCount = hashtags.count
-        let userMentionCount = userMentions.count
+        let userMentionCount = userMentions.count + 1 // +1 for original poster (magic number)
         let imagesCount = images.count
         if imagesCount > 0 { mediaSharing.append(Medium(count: imagesCount, header: imagesCount > 0 ? Constants.ImageTitle : nil, data: imageData(images))) }
         if urlCount > 0 { mediaSharing.append(Medium(count: urlCount, header: urlCount > 0 ? Constants.UrlTitle  : nil, data: stringData(urls, color: TweetTableViewCell.Color.urlColor))) }
         if hashtagCount > 0 { mediaSharing.append(Medium(count: hashtagCount, header: hashtagCount > 0 ? Constants.HtTitle : nil, data: stringData(hashtags, color: TweetTableViewCell.Color.htColor))) }
-        if userMentionCount > 0 { mediaSharing.append(Medium(count: userMentionCount, header: userMentionCount > 0 ? Constants.MentionTitle : nil, data: stringData(userMentions, color: TweetTableViewCell.Color.screennameColor))) }
+        
+        mediaSharing.append(Medium(count: userMentionCount, header: userMentionCount > 0 ? Constants.MentionTitle : nil, data: stringData(userMentions, color: TweetTableViewCell.Color.screennameColor)))
+        mediaSharing[mediaSharing.count-1].data.insert(TweetElement.StringElement("Post brought to you by @\(poster.screenName)", TweetTableViewCell.Color.posterColor), atIndex: 0)
+        print("user count: \(mediaSharing[mediaSharing.count-1].count)")
 
     }
     
     // MARK: - Table view data source
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return mediaSharing[section].count
-    }
 
+    }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return mediaSharing[section].header
@@ -99,10 +107,7 @@ class KeywordsTableViewController: UITableViewController {
         case .StringElement(let string, let color):
             let cell = tableView.dequeueReusableCellWithIdentifier(Storyboard.KeywordsReuseIdentifier, forIndexPath: indexPath) as! KeywordsTableViewCell
             cell.keywordLabel.text = string
-            let attrStr =  NSMutableAttributedString(string: string)
-            let range = NSMakeRange(0, string.characters.count)
-            attrStr.addAttribute(NSForegroundColorAttributeName, value: color, range: range)
-            cell.keywordLabel.attributedText = attrStr
+            cell.keywordLabel.attributedText = colorStringWithColor(string: cell.keywordLabel.text!, color: color)
             return cell
         case .Image(let url, _):
             let cell = tableView.dequeueReusableCellWithIdentifier(Storyboard.ImagesReuseIdentifier, forIndexPath: indexPath) as! ImagesTableViewCell
@@ -126,6 +131,15 @@ class KeywordsTableViewController: UITableViewController {
     }
     
     // MARK: - private utility functions
+    
+    private func colorStringWithColor(string string: String, color: UIColor) -> NSAttributedString {
+        let attrStr =  NSMutableAttributedString(string: string)
+        let range = NSMakeRange(0, string.characters.count)
+        attrStr.addAttribute(NSForegroundColorAttributeName, value: color, range: range)
+        return attrStr
+    }
+    
+    
     private func stringData(data: [Tweet.IndexedKeyword], color: UIColor) -> [TweetElement] {
         var tweetElement: [TweetElement] = []
         for datum in data {

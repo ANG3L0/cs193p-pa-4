@@ -52,6 +52,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
                 switch identifier {
                 case "showdetails":
                     let cell = sender as? TweetTableViewCell
+                    tweetDetailsTvc.poster = (cell!.tweet?.user) ?? User()
                     tweetDetailsTvc.images = cell?.tweet?.media ?? []
                     tweetDetailsTvc.urls = cell?.tweet?.urls ?? []
                     tweetDetailsTvc.hashtags = cell?.tweet?.hashtags ?? []

@@ -20,6 +20,7 @@ class TweetTableViewCell: UITableViewCell {
         static let screennameColor = UIColor.redColor()
         static let htColor = UIColor.brownColor()
         static let urlColor = UIColor.blueColor()
+        static let posterColor = UIColor.purpleColor()
     }
     
     @IBOutlet weak var tweetProfileImageView: UIImageView!
