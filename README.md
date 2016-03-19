@@ -23,7 +23,7 @@ Did unwind since Show would be a pretty unreasonable UI.
 ~~4. [ ] Instead of opening urls in Safari, display them in your application by segueing to a controller with a UIWebView. You’ll have to provide at least a little bit of “browser control” UI to go along with it (e.g. a “back button”).~~  
 Bad practice to reinvent the wheel when you can delegate browsing to an app.  Also, just more views (i.e. WebView) so this is sort of redundant.  
 5. [x] Make the “most recent searches” table be editable (i.e. let the user swipe left to delete the ones they don’t like).  
-~~6. [ ] Add some UI which displays a new view controller showing a UICollectionView of the first image (or all the images if you want) in all the Tweets that match the search. When a user clicks on an image in this UICollectionView, segue to showing them the Tweet.~~
+~~6. [ ] Add some UI which displays a new view controller showing a UICollectionView of the first image (or all the images if you want) in all the Tweets that match the search. When a user clicks on an image in this UICollectionView, segue to showing them the Tweet.~~  
 Seems like a better alternative would be to embed the images in the first place, but then that defeats the purpose of having our detailed MVC when we click on the Tweet in the first place...  Yes, this is a copout in not wanting to make yet another view.
 
 ## Demo
